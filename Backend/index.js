@@ -3,10 +3,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
+dotenv.config()
+
 const app = express();
 
-// Port 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 // Index Route 
 app.get('/', (req, res) => {
