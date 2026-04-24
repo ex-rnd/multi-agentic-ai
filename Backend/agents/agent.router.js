@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import dotenv from "dotenv";
+dotenv.config();
 
 export const OLLAMA_URL =  process.env.OLLAMA_URL;
 export const GEN_MODEL =  process.env.GEN_MODEL;
