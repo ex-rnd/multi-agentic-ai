@@ -1,4 +1,4 @@
-// File Location: ./Backend/routes//chatRoute.js 
+// File Location: ./Backend/routes/chatRoute.js 
 
 import express from "express";
 import { chatController } from "../controllers/chatController.js";
@@ -6,7 +6,7 @@ import { chatController } from "../controllers/chatController.js";
 
 const chatRoute = express.Router();
 
-chatRoute.post('/chat', chatController)
+chatRoute.post('/chat', chatController);
 
 
 // Export 
