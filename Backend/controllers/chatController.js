@@ -10,30 +10,20 @@ export const chatController = async(req, res) => {
     }
 
     try {
-        const response = await axios.post(
-            'http://localhost:11434/api/generate',
-            {
-                "model": "mistral",
-                "prompt": message,
-                "stream": false 
-            }
-        );
-
-        const data = response.data;
+        const result = await handleQuery(message);
 
         return res.status(200).json(
             {
-                reply: data.response
+                reply: result.answer,
+                source: result.source
             }
         )
-    
     } catch (error) {
-
-        return res.status(200).json(
-                "Something went wrong"
+        return res.status(500).json(
+            "Something went wrong"
         )
-        
     }
+
 
 
 }
