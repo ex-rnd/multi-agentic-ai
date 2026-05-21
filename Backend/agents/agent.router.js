@@ -4,6 +4,8 @@ import { ollamaGenerate } from "../services/ollama.js";
 import dotenv from "dotenv"
 import { handleHealthQuery } from "./health.agent.js";
 import { handleGraphicQuery } from "./graphic.agent.js";
+import { handleButterfliesQuery } from "./butterflies.agent.js";
+import { handlePosterQuery } from "./poster.agent.js";
 dotenv.config();
 
 export const OLLAMA_URL =  process.env.OLLAMA_URL;
@@ -19,6 +21,8 @@ async function classifyQueryWithLLM(message) {
         OPTIONS:
         - "health" -> health information, symptoms, prevention, lifestyle, treatment overviews
         - "graphic" -> graphic/design help: prompts, layout, color pallettes, composition, visual styles
+        - "butterflies" -> butterfly-related information: species, habitats, life cycle, migration, conservation
+        - "poster" -> poster creation, visual layout, design concepts, short slogans
         - "unknown" -> anything else related to health or graphics
 
         RULES:
@@ -51,6 +55,8 @@ async function classifyQueryWithLLM(message) {
 
     if (normalized.includes("health")) return "health";
     if (normalized.includes("graphic")) return "graphic";
+    if (normalized.includes("butterflies")) return "butterflies";
+    if (normalized.includes("poster")) return "poster";
     return "unknown";
 
 
@@ -62,6 +68,10 @@ export async function handleQuery(message) {
     if (domain === "health") return handleHealthQuery(message);
 
     if (domain === "graphic") return handleGraphicQuery(message);
+
+    if (domain === "butterflies") return handleButterfliesQuery(message);
+
+    if (domain === "poster") return handlePosterQuery(message);
 
     if (domain === "unknown") {
         return {

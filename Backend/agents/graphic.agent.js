@@ -25,8 +25,6 @@ export async function handleGraphicQuery(message) {
 
     try {
 
-        const prompt = `${system}\n\nUser: ${message}`;
-
         const reply = await ollamaChat
     (
         [
@@ -34,7 +32,7 @@ export async function handleGraphicQuery(message) {
                 role: "system", content: system
             },
             {
-                role: "user", content: prompt
+                role: "user", content: message
             },
         ],
         {
