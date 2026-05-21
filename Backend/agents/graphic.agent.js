@@ -18,19 +18,23 @@ export async function handleGraphicQuery(message) {
     POLICY:
     - If user asks outside graphics/design scope, say: "Sorry, I only provide help with graphics/design prompts."
     FORMAT:
-    - Start with a single best prompt.
-    - Then give 2-3 short variations (bulleted).
-    
+    FORMAT:
+    - Provide a helpful design prompt.
+    - If possible, include a few variations.    
     `.trim();
 
-    const reply = await ollamaChat
+    try {
+
+        const prompt = `${system}\n\nUser: ${message}`;
+
+        const reply = await ollamaChat
     (
         [
             {
                 role: "system", content: system
             },
             {
-                role: "user", content: message
+                role: "user", content: prompt
             },
         ],
         {
@@ -40,10 +44,30 @@ export async function handleGraphicQuery(message) {
 
     );
 
-    return {
-        answer: (reply || "Sorry, I could help with only graphic/design related query").trim(),
-        source: "graphic"
+    const content = reply?.message?.content;
+
+    if (!content || !content.trim()) {
+        return {
+            answer: "I understand this as a design request, but the model returned no content. Try rephrasing your question.",
+            source: "graphic"
+        };
     }
+
+    return {
+        answer: content.trim(),
+        source: "graphic"
+    };
+  
+    } catch (error) {
+        console.error("handleGraphicQuery Error:", error.message);
+
+        return {
+            answer: "Sorry, I encountered an error while generating your design prompt.",
+            source: "graphic"
+        };
+    }
+
+    
 
 
 

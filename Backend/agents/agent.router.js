@@ -43,11 +43,15 @@ async function classifyQueryWithLLM(message) {
 
     const token = raw?.trim().toLowerCase() || "unknown";
 
-    if (token === "health" || token === "graphic" || token === "unknown") {
-        return token;
-    }
+    // if (token === "health" || token === "graphic" || token === "unknown") {
+    //     return token;
+    // }
 
+    const normalized = token.toLowerCase().trim();
 
+    if (normalized.includes("health")) return "health";
+    if (normalized.includes("graphic")) return "graphic";
+    return "unknown";
 
 
 }
@@ -57,7 +61,7 @@ export async function handleQuery(message) {
 
     if (domain === "health") return handleHealthQuery(message);
 
-    if (domain === "graphics") return handleGraphicQuery(message);
+    if (domain === "graphic") return handleGraphicQuery(message);
 
     if (domain === "unknown") {
         return {
