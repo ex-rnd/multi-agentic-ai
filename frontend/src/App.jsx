@@ -1,14 +1,13 @@
 
 import './App.css'
+import ChatPage from './components/ChatPage'
 import './index.css'
 
 function App() {
 
   return (
     <>
-      <h1 className="font-bold text-4xl">
-        Hello World
-      </h1>
+      <ChatPage/>
     </>
   )
 }
