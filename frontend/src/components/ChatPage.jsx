@@ -6,7 +6,7 @@ const INJECTED_STYLES = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #f5f0e8;
+    background: #07090f;
     overflow: hidden;
   }
 
@@ -14,33 +14,32 @@ const INJECTED_STYLES = `
     display: flex;
     flex-direction: column;
     height: 100dvh;
-    background: #f5f0e8;
-    color: #1e2335;
+    background: #07090f;
+    color: #dde3ef;
     font-family: 'IBM Plex Sans', sans-serif;
     position: relative;
     overflow: hidden;
   }
 
-  /* Dot-grid background — dark on light */
+  /* Dot-grid background */
   .chat-root::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: radial-gradient(circle, rgba(0,0,0,0.055) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
     background-size: 26px 26px;
     pointer-events: none;
     z-index: 0;
   }
 
-  /* Ambient daylight glow blobs */
+  /* Ambient glow blobs */
   .chat-root::after {
     content: '';
     position: fixed;
     inset: 0;
     background:
-      radial-gradient(ellipse 65% 45% at 8% 12%, rgba(14,165,233,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 55% 40% at 92% 82%, rgba(217,119,6,0.07) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(225,29,72,0.03) 0%, transparent 70%);
+      radial-gradient(ellipse 60% 40% at 10% 15%, rgba(34,211,160,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 35% at 90% 80%, rgba(99,102,241,0.05) 0%, transparent 60%);
     pointer-events: none;
     z-index: 0;
   }
@@ -48,18 +47,18 @@ const INJECTED_STYLES = `
   /* Scrollbar */
   .chat-messages::-webkit-scrollbar { width: 4px; }
   .chat-messages::-webkit-scrollbar-track { background: transparent; }
-  .chat-messages::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 2px; }
+  .chat-messages::-webkit-scrollbar-thumb { background: #1e2535; border-radius: 2px; }
 
   /* Textarea placeholder */
   .chat-textarea::placeholder {
-    color: #a8b0be;
+    color: #2a3450;
     font-family: 'JetBrains Mono', monospace;
   }
 
-  /* Focus state — sky blue */
+  /* Focus state for input wrapper */
   .input-wrapper:focus-within {
-    border-color: rgba(14,165,233,0.4) !important;
-    box-shadow: 0 0 0 3px rgba(14,165,233,0.08), inset 0 0 20px rgba(14,165,233,0.02);
+    border-color: rgba(99,102,241,0.3) !important;
+    box-shadow: 0 0 0 1px rgba(99,102,241,0.1), inset 0 0 20px rgba(99,102,241,0.02);
   }
 
   /* Message entrance animation */
@@ -70,7 +69,7 @@ const INJECTED_STYLES = `
 
   /* Typing dots */
   @keyframes blink {
-    0%, 100% { opacity: 0.25; transform: scale(0.75); }
+    0%, 100% { opacity: 0.2; transform: scale(0.75); }
     50%       { opacity: 1;   transform: scale(1); }
   }
 
@@ -90,74 +89,57 @@ const INJECTED_STYLES = `
   .msg-enter { animation: msgIn 0.28s cubic-bezier(0.22,1,0.36,1) forwards; }
   .badge-pop { animation: badgePop 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
 
-  /* Send button — coral rose hover */
   .send-btn:hover:not(:disabled) {
-    background: rgba(225,29,72,0.12) !important;
-    border-color: rgba(225,29,72,0.38) !important;
-    box-shadow: 0 0 16px rgba(225,29,72,0.18);
-    color: #e11d48 !important;
+    background: rgba(99,102,241,0.3) !important;
+    border-color: rgba(99,102,241,0.5) !important;
+    box-shadow: 0 0 16px rgba(99,102,241,0.25);
   }
 
   .send-btn:active:not(:disabled) {
     transform: scale(0.93);
   }
-
-  /* Suggestion button hover */
-  .suggest-btn:hover {
-    background: #ffffff !important;
-    border-color: rgba(14,165,233,0.35) !important;
-    color: #0284c7 !important;
-    box-shadow: 0 2px 8px rgba(14,165,233,0.12);
-  }
 `
-
-/* ── Four bright emotional daylight colors ──────────────────────
-   Sky Blue   #0ea5e9 / #0284c7  — calm, clarity, trust
-   Coral Rose #e11d48 / #f43f5e  — energy, vitality, emotion
-   Fresh Green #059669 / #10b981 — life, growth, nature
-   Amber Gold  #d97706 / #f59e0b — warmth, optimism, radiance
-──────────────────────────────────────────────────────────────── */
 
 const AGENTS = {
   health: {
     emoji: '🩺',
     label: 'HEALTH',
     sublabel: 'HealthInfo',
-    color: '#0284c7',
-    dim: 'rgba(14,165,233,0.09)',
-    border: 'rgba(14,165,233,0.28)',
+    color: '#22d3a0',
+    dim: 'rgba(34,211,160,0.12)',
+    border: 'rgba(34,211,160,0.22)',
   },
   graphic: {
     emoji: '🎨',
     label: 'GRAPHIC',
     sublabel: 'GraphicPro',
-    color: '#e11d48',
-    dim: 'rgba(225,29,72,0.07)',
-    border: 'rgba(225,29,72,0.22)',
+    color: '#c084fc',
+    dim: 'rgba(192,132,252,0.12)',
+    border: 'rgba(192,132,252,0.22)',
   },
   butterflies: {
     emoji: '🦋',
     label: 'BUTTERFLY',
     sublabel: 'ButterflyInfo',
-    color: '#059669',
-    dim: 'rgba(5,150,105,0.09)',
-    border: 'rgba(5,150,105,0.26)',
+    color: '#38bdf8',
+    dim: 'rgba(56,189,248,0.12)',
+    border: 'rgba(56,189,248,0.22)',
   },
   poster: {
     emoji: '📰',
     label: 'POSTER',
     sublabel: 'PosterPro',
-    color: '#d97706',
-    dim: 'rgba(217,119,6,0.09)',
-    border: 'rgba(217,119,6,0.26)',
+    color: '#fb923c',
+    dim: 'rgba(251,146,60,0.12)',
+    border: 'rgba(251,146,60,0.22)',
   },
   unknown: {
     emoji: '◈',
     label: 'SYSTEM',
     sublabel: 'General',
     color: '#64748b',
-    dim: 'rgba(100,116,139,0.07)',
-    border: 'rgba(100,116,139,0.18)',
+    dim: 'rgba(100,116,139,0.1)',
+    border: 'rgba(100,116,139,0.2)',
   },
 }
 
@@ -246,39 +228,37 @@ export default function ChatPage() {
           justifyContent: 'space-between',
           padding: '0 24px',
           height: '52px',
-          borderBottom: '1px solid rgba(0,0,0,0.07)',
-          background: 'rgba(255,252,245,0.94)',
+          borderBottom: '1px solid rgba(255,255,255,0.055)',
+          background: 'rgba(7,9,15,0.92)',
           backdropFilter: 'blur(16px)',
           position: 'relative',
           zIndex: 20,
           flexShrink: 0,
           gap: '16px',
-          boxShadow: '0 1px 12px rgba(0,0,0,0.06)',
         }}>
-          {/* Scan-line accent — sky-blue to coral */}
+          {/* Scan-line accent */}
           <div style={{
             position: 'absolute',
             bottom: 0,
             left: 0,
-            height: '2px',
+            height: '1px',
             width: '25%',
-            background: 'linear-gradient(90deg, transparent, #0ea5e9, #e11d48, transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(34,211,160,0.5), transparent)',
             animation: 'scanline 4s linear infinite',
           }} />
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-            {/* Logo mark — sky blue */}
+            {/* Logo mark */}
             <div style={{
               width: '28px',
               height: '28px',
               borderRadius: '6px',
-              background: 'rgba(14,165,233,0.1)',
-              border: '1px solid rgba(14,165,233,0.3)',
+              background: 'rgba(34,211,160,0.1)',
+              border: '1px solid rgba(34,211,160,0.25)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: '14px',
-              color: '#0284c7',
             }}>◈</div>
 
             <span style={{
@@ -286,14 +266,14 @@ export default function ChatPage() {
               fontWeight: 800,
               fontSize: '13px',
               letterSpacing: '0.18em',
-              color: '#1e2335',
+              color: '#e2e8f0',
               textTransform: 'uppercase',
             }}>Multi-Agent AI</span>
 
             <span style={{
               fontFamily: '"JetBrains Mono", monospace',
               fontSize: '10px',
-              color: '#a8b0be',
+              color: '#243050',
               letterSpacing: '0.08em',
             }}>// dispatch v2</span>
           </div>
@@ -320,7 +300,7 @@ export default function ChatPage() {
                   height: '5px',
                   borderRadius: '50%',
                   background: ag.color,
-                  boxShadow: `0 0 5px ${ag.color}55`,
+                  boxShadow: `0 0 5px ${ag.color}`,
                   flexShrink: 0,
                 }} />
                 {ag.label}
@@ -351,23 +331,23 @@ export default function ChatPage() {
               gap: '16px',
               padding: '80px 24px',
               textAlign: 'center',
+              color: '#1e2a40',
             }}>
               <div style={{
                 fontFamily: '"JetBrains Mono", monospace',
                 fontSize: '52px',
                 lineHeight: 1,
-                color: '#0ea5e9',
-                opacity: 0.35,
+                opacity: 0.4,
               }}>◈</div>
               <p style={{
                 fontFamily: '"JetBrains Mono", monospace',
                 fontSize: '12px',
                 letterSpacing: '0.12em',
-                color: '#94a3b8',
+                color: '#243050',
               }}>AWAITING QUERY DISPATCH</p>
               <p style={{
                 fontSize: '13px',
-                color: '#64748b',
+                color: '#1a2236',
                 lineHeight: 1.7,
                 maxWidth: '360px',
               }}>
@@ -378,18 +358,25 @@ export default function ChatPage() {
                 {['What are symptoms of dehydration?', 'Design a color palette for a sci-fi brand', 'Tell me about monarch butterflies'].map(q => (
                   <button
                     key={q}
-                    className="suggest-btn"
                     onClick={() => { setInput(q); textareaRef.current?.focus() }}
                     style={{
-                      background: 'rgba(255,255,255,0.7)',
-                      border: '1px solid rgba(0,0,0,0.1)',
+                      background: 'rgba(255,255,255,0.025)',
+                      border: '1px solid rgba(255,255,255,0.07)',
                       borderRadius: '6px',
                       padding: '7px 13px',
-                      color: '#64748b',
+                      color: '#334155',
                       fontSize: '11px',
                       fontFamily: '"JetBrains Mono", monospace',
                       cursor: 'pointer',
                       transition: 'all 0.15s',
+                    }}
+                    onMouseEnter={e => {
+                      e.target.style.borderColor = 'rgba(255,255,255,0.15)'
+                      e.target.style.color = '#64748b'
+                    }}
+                    onMouseLeave={e => {
+                      e.target.style.borderColor = 'rgba(255,255,255,0.07)'
+                      e.target.style.color = '#334155'
                     }}
                   >{q}</button>
                 ))}
@@ -415,32 +402,31 @@ export default function ChatPage() {
                 width: '32px',
                 height: '32px',
                 borderRadius: '6px',
-                background: 'rgba(14,165,233,0.08)',
-                border: '1px solid rgba(14,165,233,0.22)',
+                background: 'rgba(30,37,55,0.8)',
+                border: '1px solid rgba(255,255,255,0.06)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: '14px',
-                color: '#0284c7',
+                color: '#334155',
                 flexShrink: 0,
               }}>◈</div>
               <div style={{
                 padding: '13px 18px',
-                background: 'rgba(255,255,255,0.85)',
-                border: '1px solid rgba(0,0,0,0.08)',
-                borderLeft: '2px solid #0ea5e9',
+                background: 'rgba(14,18,30,0.8)',
+                border: '1px solid rgba(255,255,255,0.06)',
+                borderLeft: '2px solid #243050',
                 borderRadius: '0 10px 10px 10px',
                 display: 'flex',
                 gap: '5px',
                 alignItems: 'center',
-                boxShadow: '0 1px 6px rgba(0,0,0,0.05)',
               }}>
                 {[0, 0.18, 0.36].map((delay, i) => (
                   <span key={i} style={{
                     width: '7px',
                     height: '7px',
                     borderRadius: '50%',
-                    background: '#0ea5e9',
+                    background: '#2a3d5c',
                     display: 'inline-block',
                     animation: `blink 1.1s ease-in-out ${delay}s infinite`,
                   }} />
@@ -455,18 +441,18 @@ export default function ChatPage() {
               maxWidth: '560px',
               width: '100%',
               padding: '10px 14px',
-              background: 'rgba(225,29,72,0.05)',
-              border: '1px solid rgba(225,29,72,0.2)',
+              background: 'rgba(248,113,113,0.04)',
+              border: '1px solid rgba(248,113,113,0.18)',
               borderRadius: '6px',
               fontFamily: '"JetBrains Mono", monospace',
               fontSize: '11px',
-              color: '#64748b',
+              color: '#94a3b8',
               display: 'flex',
               gap: '8px',
               alignItems: 'center',
             }}>
-              <span style={{ color: '#e11d48' }}>ERR</span>
-              <span style={{ color: '#a8b0be' }}>//</span>
+              <span style={{ color: '#f87171' }}>ERR</span>
+              <span style={{ color: '#334155' }}>//</span>
               {error}
             </div>
           )}
@@ -477,28 +463,26 @@ export default function ChatPage() {
         {/* ── Input footer ── */}
         <footer style={{
           padding: '12px 24px 18px',
-          borderTop: '1px solid rgba(0,0,0,0.06)',
-          background: 'rgba(255,252,245,0.97)',
+          borderTop: '1px solid rgba(255,255,255,0.05)',
+          background: 'rgba(7,9,15,0.95)',
           backdropFilter: 'blur(16px)',
           position: 'relative',
           zIndex: 20,
           flexShrink: 0,
-          boxShadow: '0 -1px 12px rgba(0,0,0,0.05)',
         }}>
           <div className="input-wrapper" style={{
             display: 'flex',
             alignItems: 'flex-end',
             gap: '10px',
-            background: '#ffffff',
-            border: '1px solid rgba(0,0,0,0.1)',
+            background: 'rgba(14,18,30,0.7)',
+            border: '1px solid rgba(255,255,255,0.07)',
             borderRadius: '8px',
             padding: '10px 12px',
             transition: 'border-color 0.2s, box-shadow 0.2s',
-            boxShadow: '0 1px 4px rgba(0,0,0,0.05)',
           }}>
             <span style={{
               fontFamily: '"JetBrains Mono", monospace',
-              color: '#0ea5e9',
+              color: '#243050',
               fontSize: '15px',
               lineHeight: '22px',
               userSelect: 'none',
@@ -519,7 +503,7 @@ export default function ChatPage() {
                 background: 'transparent',
                 border: 'none',
                 outline: 'none',
-                color: '#1e2335',
+                color: '#dde3ef',
                 fontSize: '13.5px',
                 fontFamily: '"JetBrains Mono", monospace',
                 resize: 'none',
@@ -537,9 +521,9 @@ export default function ChatPage() {
                 width: '34px',
                 height: '34px',
                 borderRadius: '6px',
-                background: canSend ? 'rgba(225,29,72,0.09)' : 'rgba(0,0,0,0.03)',
-                border: canSend ? '1px solid rgba(225,29,72,0.3)' : '1px solid rgba(0,0,0,0.08)',
-                color: canSend ? '#e11d48' : '#cbd5e1',
+                background: 'rgba(99,102,241,0.15)',
+                border: '1px solid rgba(99,102,241,0.28)',
+                color: canSend ? '#818cf8' : '#1e2535',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -562,7 +546,7 @@ export default function ChatPage() {
             paddingLeft: '2px',
             fontFamily: '"JetBrains Mono", monospace',
             fontSize: '10px',
-            color: '#b0bac8',
+            color: '#172030',
             letterSpacing: '0.06em',
           }}>
             Enter to send · Shift+Enter for newline
@@ -617,7 +601,7 @@ function AgentMessage({ msg }) {
           <span style={{
             fontFamily: '"JetBrains Mono", monospace',
             fontSize: '9px',
-            color: '#a8b0be',
+            color: '#1e2a3a',
             letterSpacing: '0.06em',
           }}>{fmtTime(msg.ts)}</span>
         </div>
@@ -625,22 +609,21 @@ function AgentMessage({ msg }) {
         {/* Bubble */}
         <div style={{
           padding: '13px 16px',
-          background: 'rgba(255,255,255,0.88)',
+          background: agent.dim,
           borderTop: `1px solid ${agent.border}`,
           borderRight: `1px solid ${agent.border}`,
           borderBottom: `1px solid ${agent.border}`,
           borderLeft: `2px solid ${agent.color}`,
           borderRadius: '0 10px 10px 10px',
-          boxShadow: '0 1px 8px rgba(0,0,0,0.05)',
         }}>
           <p style={{
             fontSize: '13.5px',
             lineHeight: 1.78,
-            color: '#2d3748',
+            color: '#c8d3e8',
             margin: 0,
             whiteSpace: 'pre-wrap',
             fontFamily: '"IBM Plex Sans", sans-serif',
-            fontWeight: 400,
+            fontWeight: 300,
           }}>{msg.content}</p>
         </div>
       </div>
@@ -663,7 +646,7 @@ function UserMessage({ msg }) {
           <span style={{
             fontFamily: '"JetBrains Mono", monospace',
             fontSize: '9px',
-            color: '#a8b0be',
+            color: '#1e2a3a',
             letterSpacing: '0.06em',
           }}>{fmtTime(msg.ts)}</span>
           <span style={{
@@ -671,27 +654,25 @@ function UserMessage({ msg }) {
             fontSize: '10px',
             fontWeight: 700,
             letterSpacing: '0.14em',
-            color: '#d97706',
+            color: '#6366f1',
             padding: '2px 8px',
             borderRadius: '3px',
-            border: '1px solid rgba(217,119,6,0.3)',
-            background: 'rgba(217,119,6,0.08)',
+            border: '1px solid rgba(99,102,241,0.28)',
+            background: 'rgba(99,102,241,0.1)',
           }}>YOU</span>
         </div>
 
-        {/* Bubble — amber gold tint */}
+        {/* Bubble */}
         <div style={{
           padding: '13px 16px',
-          background: 'rgba(255,255,255,0.88)',
-          border: '1px solid rgba(217,119,6,0.22)',
-          borderRight: '2px solid #d97706',
+          background: 'rgba(99,102,241,0.09)',
+          border: '1px solid rgba(99,102,241,0.2)',
           borderRadius: '10px 0 10px 10px',
-          boxShadow: '0 1px 8px rgba(217,119,6,0.08)',
         }}>
           <p style={{
             fontSize: '13.5px',
             lineHeight: 1.75,
-            color: '#1e2335',
+            color: '#c7d2fe',
             margin: 0,
             whiteSpace: 'pre-wrap',
             fontFamily: '"JetBrains Mono", monospace',
@@ -700,20 +681,20 @@ function UserMessage({ msg }) {
         </div>
       </div>
 
-      {/* Avatar — amber gold */}
+      {/* Avatar */}
       <div style={{
         width: '32px',
         height: '32px',
         borderRadius: '6px',
-        background: 'rgba(217,119,6,0.09)',
-        border: '1px solid rgba(217,119,6,0.28)',
+        background: 'rgba(99,102,241,0.1)',
+        border: '1px solid rgba(99,102,241,0.25)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         fontFamily: '"JetBrains Mono", monospace',
         fontSize: '8px',
         fontWeight: 700,
-        color: '#d97706',
+        color: '#6366f1',
         letterSpacing: '0.05em',
         flexShrink: 0,
         marginTop: '22px',
