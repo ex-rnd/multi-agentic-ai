@@ -151,15 +151,18 @@ npm run dev
 3. Return a domain‑specific response
 4. Display it in the chat UI
 
+
 ## 🔀 Switch API Routes
-<div align="center">
+<table align="center">
+<tr><td>
 | Agent | Domain | Persona |
 | --- | --- | --- |
 | **health.agent.js** | Symptoms, prevention, lifestyle | *HealthInfo* — safe, general info only |
 | **graphic.agent.js** | Image prompts, palettes, layouts | *GraphicPro* — production‑ready prompts |
 | **butterflies.agent.js** | Species, habitats, migration | *ButterflyInfo* — butterfly specialist |
 | **poster.agent.js** | Poster headlines, taglines, styles | *PosterPro* — structured poster design |
-</div>
+</td></tr>
+</table>
 
 ---
 
