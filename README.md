@@ -154,14 +154,31 @@ npm run dev
 
 ## 🔀 Switch API Routes
 <table align="center">
-<tr><td>
-| Agent | Domain | Persona |
-| --- | --- | --- |
-| **health.agent.js** | Symptoms, prevention, lifestyle | *HealthInfo* — safe, general info only |
-| **graphic.agent.js** | Image prompts, palettes, layouts | *GraphicPro* — production‑ready prompts |
-| **butterflies.agent.js** | Species, habitats, migration | *ButterflyInfo* — butterfly specialist |
-| **poster.agent.js** | Poster headlines, taglines, styles | *PosterPro* — structured poster design |
-</td></tr>
+  <tr>
+    <th>Agent</th>
+    <th>Domain</th>
+    <th>Persona</th>
+  </tr>
+  <tr>
+    <td><strong>health.agent.js</strong></td>
+    <td>Symptoms, prevention, lifestyle</td>
+    <td><em>HealthInfo</em> — safe, general info only</td>
+  </tr>
+  <tr>
+    <td><strong>graphic.agent.js</strong></td>
+    <td>Image prompts, palettes, layouts</td>
+    <td><em>GraphicPro</em> — production‑ready prompts</td>
+  </tr>
+  <tr>
+    <td><strong>butterflies.agent.js</strong></td>
+    <td>Species, habitats, migration</td>
+    <td><em>ButterflyInfo</em> — butterfly specialist</td>
+  </tr>
+  <tr>
+    <td><strong>poster.agent.js</strong></td>
+    <td>Poster headlines, taglines, styles</td>
+    <td><em>PosterPro</em> — structured poster design</td>
+  </tr>
 </table>
 
 ---
