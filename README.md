@@ -1,6 +1,6 @@
 # 🧠 Multi‑Agentic AI System 
 
-A **local multi‑agent AI chatbot** powered by a **Node.js/Express backend**, a **React/Vite frontend**, and a **locally‑running Ollama LLM**.
+A **local multi‑agent AI chatbot** powered by a **Node.js/Express backend**, a **NextJS/React/Vite frontend**, and a **locally‑running Ollama LLM**.
 User messages are intelligently routed to **specialized AI agents** — each with its own domain expertise and system persona — enabling accurate, domain‑specific responses.
 
 This project demonstrates how to build a **modular**, **extensible**, **production‑ready multi‑agent architecture**, where each agent handles a specific knowledge domain.
