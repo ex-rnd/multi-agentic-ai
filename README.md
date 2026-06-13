@@ -11,6 +11,10 @@ This project demonstrates how to build a **modular**, **extensible**, **producti
 ## ✳️ Visual Overview 
 
 <div align="center">
+  <video src="https://github.com/user-attachments/assets/36b129f9-1246-46db-9d47-8ab9a2cefcaa" width="400" />
+</div>
+
+<div align="center">
   <video src="https://github.com/user-attachments/assets/f5f810f9-1561-4134-b13f-802675df69c5" width="400" />
 </div>
 
